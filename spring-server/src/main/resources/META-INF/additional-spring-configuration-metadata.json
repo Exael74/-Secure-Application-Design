@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "app.security.allowed-origin",
+      "type": "java.lang.String",
+      "description": "Allowed CORS origin for the Apache client host."
+    }
+  ]
+}
