@@ -1,4 +1,4 @@
-# AWS Deployment Runbook (You handle deployment)
+# AWS Deployment Runbook
 
 ## 1. Create EC2 instances
 
