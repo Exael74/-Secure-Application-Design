@@ -1,96 +1,66 @@
-# Enterprise Architecture Workshop - Security Application Design
+# Enterprise Architecture Workshop: Secure Application Design
 
-This repository contains the full lab implementation except deployment/GitHub management.
+This repository contains the full implementation for the Secure Application Design workshop. It demonstrates a secure, scalable application utilizing AWS infrastructure with a strong focus on security best practices.
 
-## Project Structure
+## Overview
 
-- `apache-client/`: Async HTML + JavaScript client to be served by Apache over TLS.
-- `spring-server/`: Spring Boot backend with secure login and hashed password storage.
-- `docs/`: Architecture and deployment/security guidance for AWS + Let's Encrypt.
+The architecture features two primary components:
 
-## Lab Requirements Mapping
+1. **Server 1: Apache Server**
+   Responsible for serving an asynchronous HTML+JavaScript client over a secure connection using TLS. Client-side code is delivered through encrypted channels, ensuring data integrity and confidentiality during download.
+2. **Server 2: Spring Framework**
+   Handles backend services, offering RESTful API endpoints. These services are protected using TLS, ensuring secure communication between the client and the backend.
 
-1. **Apache server serving async client with TLS**
-   - Client files are in `apache-client/`.
-   - Apache TLS virtual host example is in `docs/apache-vhost-example.conf`.
+### Key Security Features Implemented
+- **TLS Encryption:** Secure transmission of data using TLS certificates generated through Let’s Encrypt.
+- **Asynchronous Client:** HTML+JavaScript client leverages async techniques (`fetch` API) to optimize performance.
+- **Login Security:** Password authentication is implemented, with passwords securely stored as hashes (BCrypt).
+- **AWS Deployment:** Designed to be deployed on AWS EC2 instances securely.
 
-2. **Spring server with REST API protected with TLS**
-   - REST backend is in `spring-server/`.
-   - TLS setup details are in `docs/spring-https-and-letsencrypt.md`.
+## Final Deliverables
 
-3. **Login security with hashed passwords**
-   - User registration/login endpoints implemented in `spring-server`.
-   - Passwords are hashed using BCrypt before persistence.
+### 1. Application Architecture Design
+A detailed design document outlining the relationship between Apache, Spring, and the async HTML+JS client.
+👉 [View Architecture Design Document](docs/architecture-design.md)
 
-4. **AWS deployment guidance**
-   - Step-by-step runbook in `docs/aws-deployment-runbook.md`.
+### 2. Instructions for Deployment
+Detailed instructions for setting up the Apache and Spring servers on AWS, including Let's Encrypt TLS configuration.
+👉 [View AWS Deployment Runbook](docs/aws-deployment-runbook.md)
+👉 [View Spring TLS Setup Guide](docs/spring-https-and-letsencrypt.md)
 
-5. **Architecture design document**
-   - See `docs/architecture-design.md`.
+### 3. Source Code
+- **Client Code:** Located in the [`apache-client/`](apache-client/) directory.
+- **Backend Code:** Located in the [`spring-server/`](spring-server/) directory.
 
-## Backend API
+---
 
-Base URL (example): `https://<SPRING_HOST>:8443`
+## Evaluation Evidence
 
-### Register
+> **Note for Student:** Add your screenshots and video link below before submitting the assignment.
 
-`POST /api/auth/register`
+### Screenshots from Testing
+*Upload your screenshots to a folder (e.g., `images/`) and link them here.*
 
-```json
-{
-  "username": "alice",
-  "email": "alice@example.com",
-  "password": "StrongPass123"
-}
-```
+- [ ] Screenshot 1: Client loaded securely via HTTPS (Apache).
+- [ ] Screenshot 2: Successful registration showing encrypted password in database.
+- [ ] Screenshot 3: Successful login returning a Bearer token.
+- [ ] Screenshot 4: Successful API request to protected endpoint using the returned token over HTTPS.
 
-Returns token.
+### Video Demonstration
+*Provide a link to a video demonstrating the application deployment and explaining the security features.*
 
-### Login
+- **Video URL:** `[Insert link to YouTube/Vimeo/Drive video here]`
 
-`POST /api/auth/login`
+---
 
-```json
-{
-  "username": "alice",
-  "password": "StrongPass123"
-}
-```
+## Local Development (Testing before AWS)
 
-Returns token.
-
-### Protected endpoint
-
-`GET /api/secure/profile`
-
-Header: `Authorization: Bearer <token>`
-
-## Local Run (without deployment)
-
-### Spring backend
-
+### Run Spring Backend
 ```bash
 cd spring-server
 mvn clean spring-boot:run
 ```
+*Available at `http://localhost:8443` (TLS is disabled by default locally to facilitate testing).*
 
-Default URL: `http://localhost:8443` when SSL disabled, or `https://localhost:8443` when SSL is enabled with keystore.
-
-### Apache client (quick local test)
-
-Serve `apache-client/` with any static server or Apache.
-Update `API_BASE_URL` in `apache-client/app.js` to your Spring server URL.
-
-## Deliverables Checklist
-
-- Source code ready: yes
-- Architecture document: yes
-- Deployment instructions: yes
-- TLS and Let's Encrypt instructions: yes
-- Security implementation (login + hash): yes
-- README with instructions: yes
-
-## Notes
-
-- You said you will handle deployment and GitHub submission.
-- Add screenshots and demo video after deployment/testing in AWS.
+### Run Apache Client
+Serve the `apache-client/` directory using any local web server. Ensure `API_BASE_URL` in `app.js` is set to `http://localhost:8443` for local tests.
