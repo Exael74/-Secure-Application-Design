@@ -21,12 +21,12 @@ The architecture features two primary components:
 
 ### 1. Application Architecture Design
 A detailed design document outlining the relationship between Apache, Spring, and the async HTML+JS client.
-👉 [View Architecture Design Document](docs/architecture-design.md)
+[View Architecture Design Document](docs/architecture-design.md)
 
 ### 2. Instructions for Deployment
 Detailed instructions for setting up the Apache and Spring servers on AWS, including Let's Encrypt TLS configuration.
-👉 [View AWS Deployment Runbook](docs/aws-deployment-runbook.md)
-👉 [View Spring TLS Setup Guide](docs/spring-https-and-letsencrypt.md)
+[View AWS Deployment Runbook](docs/aws-deployment-runbook.md)
+[View Spring TLS Setup Guide](docs/spring-https-and-letsencrypt.md)
 
 ### 3. Source Code
 - **Client Code:** Located in the [`apache-client/`](apache-client/) directory.
