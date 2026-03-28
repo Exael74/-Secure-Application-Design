@@ -35,11 +35,8 @@ Detailed instructions for setting up the Apache and Spring servers on AWS, inclu
 ---
 
 ## Evaluation Evidence
-
-> **Note for Student:** Add your screenshots and video link below before submitting the assignment.
-
 ### Screenshots from Testing
-*Upload your screenshots to a folder (e.g., `images/`) and link them here.*
+
 
 - [ ] Screenshot 1: Client loaded securely via HTTPS (Apache).
 - [ ] Screenshot 2: Successful registration showing encrypted password in database.
@@ -47,7 +44,6 @@ Detailed instructions for setting up the Apache and Spring servers on AWS, inclu
 - [ ] Screenshot 4: Successful API request to protected endpoint using the returned token over HTTPS.
 
 ### Video Demonstration
-*Provide a link to a video demonstrating the application deployment and explaining the security features.*
 
 - **Video URL:** `[Insert link to YouTube/Vimeo/Drive video here]`
 
